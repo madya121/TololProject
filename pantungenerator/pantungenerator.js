@@ -3,9 +3,14 @@ $(document).ready(function(){
     var url = "https://id.wikiquote.org/w/api.php";
     var bukanIsi = [];
     var isi = [];
-    var badPreSufWords = ["dan", "atau", "artinya"];
+    var badPreSufWords = ["dan", "atau", "artinya", "renamed"];
+    var gw = ["Please Wait", "Sabar", "Sabar ya", "Sabar dong", "Wait lah", "Ga sabaran amat", "Susah nih", "Aduh diem dong",
+    "Berisik", "Woi", "Njir sabar dong", "TAI LAH YANG SABAR", "MASIH GENERATING NEH", "jing", "dasar abu monitor", "susah neh generate ginian"];
+    var isGenerating;
+    var gwc = 0;
 
     function render() {
+        isGenerating = false;
         var html = "";
         html += bukanIsi[0] + ",<br>";
         html += bukanIsi[1] + ",<br>";
@@ -56,6 +61,8 @@ $(document).ready(function(){
             var li = a.split(" ");
             if (badPreSufWords.indexOf(li[0])!=-1) return false;
             if (badPreSufWords.indexOf(li[li.length-1])!=-1) return false;
+            if (li[li.length-1]>='0' && li[li.length-1]<='9') return false;
+            if (li[li.length-2]>='0' && li[li.length-2]<='9') return false;
             return a.length>=15 && a.length<=50;
         });
         return list;
@@ -88,6 +95,9 @@ $(document).ready(function(){
                    s = cleanHTMLTags(s);
                    s = s.split(/\.|-|:|\n|\(|\)|,|!|"/);
                    s = cleanList(s);
+                   s = s.filter(function(a){
+                       return a.substr(a.length -2) == belakang;
+                   });
 
                    if (s.length > 0) {
                        isi.push(s[0]);
@@ -106,7 +116,15 @@ $(document).ready(function(){
     $("#generate").click(function(){
         bukanIsi = [];
         isi = [];
-        $("#pantun").html("Generating... Please wait... Sabar ya...");
+        isGenerating = true;
+        gwc = 0;
+        $("#pantun").html("Generating...");
         generateBukanIsi();
     });
+
+    setInterval(function(){
+        if (isGenerating) {
+            $("#pantun").append("<br>"+gw[Math.floor(Math.random()*gw.length)%gw.length] + "...");
+        }
+    }, 2000);
 });

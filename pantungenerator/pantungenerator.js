@@ -17,6 +17,7 @@ $(document).ready(function(){
         html += isi[0] + ",<br>";
         html += isi[1] + ".<br>";
         $("#pantun").html(html);
+        $("#facebookShare").show();
     }
 
     function generateBukanIsi() {
@@ -131,4 +132,11 @@ $(document).ready(function(){
             $("#pantun").append("<br>"+gw[Math.floor(Math.random()*gw.length)%gw.length] + "...");
         }
     }, 2000);
+
+    $("#facebookShare").click(function(){
+        var description = $("#pantun").text();
+        var fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=http://madya121.github.io/TololProject/pantungenerator/&description="+description, "pop", "width=600, height=400, scrollbars=no");
+        return false;
+    });
+    $("#facebookShare").hide();
 });

@@ -2,6 +2,9 @@ body {
     width: 100%;
     text-align: center;
     background-color: aliceblue;
+    font-smooth: never;
+    -webkit-font-smoothing: none;
+    font-family: 'Press Start 2P', cursive;
 }
 
 #battery {

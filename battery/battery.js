@@ -65,4 +65,9 @@ $(document).ready(function(){
     setInterval(function(){
         changeBatteryValue();
     }, updateInterval);
+
+    chargeToggle.click(function(){
+        var toggleSound = new Audio('Toggle.mp3');
+        toggleSound.play();
+    });
 });

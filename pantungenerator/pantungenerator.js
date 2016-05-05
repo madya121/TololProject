@@ -58,11 +58,14 @@ $(document).ready(function(){
             list[i] = list[i].trim();
         }
         list = list.filter(function(a){
+            if (!a) return false;
             var li = a.split(" ");
             if (badPreSufWords.indexOf(li[0])!=-1) return false;
             if (badPreSufWords.indexOf(li[li.length-1])!=-1) return false;
             if (li[li.length-1]>='0' && li[li.length-1]<='9') return false;
             if (li[li.length-2]>='0' && li[li.length-2]<='9') return false;
+            if (!a[0].match(/[a-z]/i)) return false;
+            if (!a[a.length-1].match(/[a-z]/i)) return false;
             return a.length>=15 && a.length<=50;
         });
         return list;

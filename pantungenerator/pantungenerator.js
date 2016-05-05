@@ -38,7 +38,7 @@ $(document).ready(function(){
                        }
                    }
                    s = cleanHTMLTags(s);
-                   s = s.split(/\.|-|:|\n|\(|\)|,/);
+                   s = s.split(/\.|-|:|\n|\(|\)|,|!|"/);
                    s = cleanList(s);
 
                    for (var i=0;i<s.length && i<2;i++) {

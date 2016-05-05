@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>Tolol Battery</title>
+    <link rel="stylesheet" type="text/css" href="battery.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="battery.js"></script>
+</head>
+<body>
+    <h1>Fill me up!</h1>
+    <div id="battery">
+        <div id="battery-fill">
+        </div>
+        <div id="battery-head-offset-bottom"></div>
+        <div id="battery-head-offset-top"></div>
+        <div class="thunder"></div>
+    </div>
+    <br><br>
+    <span class="toggle">
+        <input id="charge-toggle" type="checkbox">
+        <label data-off="O" data-on="|"></label>
+    </span>
+    <h1>Wasted time this session &rarr; <span id="swt"></span></h1>
+    <h1>Total wasted time &rarr; <span id="twt"></span></h1>
+</body>
+</html>
